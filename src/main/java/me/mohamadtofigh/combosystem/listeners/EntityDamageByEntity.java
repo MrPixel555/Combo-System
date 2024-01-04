@@ -10,9 +10,9 @@ public class EntityDamageByEntity implements Listener {
 
     @EventHandler
     public static void onDamage(EntityDamageByEntityEvent event){
-        Entity getDamager = event.getDamager();
-        if (getDamager instanceof Player){
-            getDamager.getEntityId();
+        if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            player.setVelocity(player.getLocation().getDirection().multiply(-2));
         }
     }
 }

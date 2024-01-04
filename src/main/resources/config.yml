@@ -1,0 +1,34 @@
+#======Config-File=================='===================================#
+#developers: [Amir_Mahdi_Rezaee, Detiven, mohamadtofigh]                #
+#discord support: [https://discord.gg/DUdq4JFr3H]                       #
+#github-issue: [https://github.com/mohamadtofigh3/Combo-System/issues]  #
+#description: [                                                         #
+#This plugin is the settings for combo player                           #
+#This plugin is made for Minecraft and by installing this plugin        #
+#You have a better combo system in your server if you are               #
+#Minecraft doesn't exist, but this plugin has these benefits            #
+#He provides it. Sincerely ]                                            #
+#==================================='===================================#
+
+#Config version of this plugin
+version: 1.0.0B
+
+#Here is the root plugin. The main menu order is the plugin setting
+Root:
+  #You should leave your own plugin here. If you don't have to buy D, otherwise the plugin will not activate.
+  Token: ""
+  #You have to make the list here. I suggest you not touch.
+  Permissions:
+    #If someone has admin permission, they have all the access to this plugin!
+    Admin: "combosystem.admin"
+    #If someone has reload permission, they can use the '/combo reload' command!
+    Reload: "combosystem.reload"
+    #If someone has debug permission, they can use the '/combo debug' command.
+    Debug: "combosystem.debug"
+
+#Here's the main settings, for combo setting and launching.
+Combo:
+
+#Here are all the messages you send while using the plugin you can set up your own
+Messages:
+  #
