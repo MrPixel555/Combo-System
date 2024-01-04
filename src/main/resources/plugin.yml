@@ -1,0 +1,8 @@
+name: Combo-System
+version: '${version}'
+main: me.mohamadtofigh.combosystem.Main
+api-version: 1.13
+author: mohamadtofigh
+commands:
+  combo:
+    description: get main commands. for tab completer sub commands.
