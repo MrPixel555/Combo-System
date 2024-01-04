@@ -12,7 +12,7 @@ public class EntityDamageByEntity implements Listener {
     public static void onDamage(EntityDamageByEntityEvent event){
         Entity getDamager = event.getDamager();
         if (getDamager instanceof Player){
-            getDamager.getEntityId();
+
         }
     }
 }
