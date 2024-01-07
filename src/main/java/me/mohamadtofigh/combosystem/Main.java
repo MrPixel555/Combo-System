@@ -39,6 +39,9 @@ public final class Main extends JavaPlugin implements Config {
         ServerLib.sendMessage(Prefix.getErrorPrefix+"ohh, please check your "+error);
     }
     private void onLoaded(){
+        reloadConfig();
+        saveConfig();
+        saveDefaultConfig();
         Listener[] listeners = {
                 new EntityDamageByEntity()
         };
