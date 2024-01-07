@@ -33,8 +33,10 @@ public class PluginCommand implements CommandExecutor {
     private void onDupeCommand(CommandSender sender, Command command, String label, String[] args){
         if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
             new Reload(sender);
+            return;
         } else if (args.length > 0 && args[0].equalsIgnoreCase("debug")){
             new Debug(sender);
+            return;
         }
     }
     private void onOtherCommand(CommandSender sender, String[] args){
