@@ -59,6 +59,10 @@ public final class Main extends JavaPlugin implements Config {
                 getPrefix+"&7registering config...",
                 getPrefix+"&aloaded success."
         };
+
+        for (String s : messages){
+            ServerLib.sendMessage(s);
+        }
     }
     private void booting(String sended){
         ServerLib.sendMessage(getPrefix+sended);
