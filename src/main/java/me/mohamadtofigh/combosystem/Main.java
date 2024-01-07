@@ -40,7 +40,6 @@ public final class Main extends JavaPlugin implements Config {
     }
     private void onLoaded(){
         reloadConfig();
-        saveConfig();
         saveDefaultConfig();
         Listener[] listeners = {
                 new EntityDamageByEntity()
