@@ -23,15 +23,19 @@ public final class Main extends JavaPlugin implements Config {
     }
     private void connectionToken(){
         booting("&7booting plugins...");
+
         if (Connection.isInternetAvailable()){
             booting("&7booted plugin is loading token...");
+
             if (getUserToken.equals("developer_mode")){
                 booting("&aloaded token success.");
                 onLoaded();
+
             } else {
                 onError("token on config file");
             }
         } else {
+
             onError("internet wi-fi connection");
         }
     }
@@ -39,27 +43,30 @@ public final class Main extends JavaPlugin implements Config {
         ServerLib.sendMessage(Prefix.getErrorPrefix+"ohh, please check your "+error);
     }
     private void onLoaded(){
-        reloadConfig();
         saveDefaultConfig();
+        reloadConfig();
+
         Listener[] listeners = {
                 new EntityDamageByEntity()
         };
         for (Listener l : listeners){
             getServer().getPluginManager().registerEvents(l, this);
         }
+
         getCommand("combo").setExecutor(new PluginCommand());
         getCommand("combo").setTabCompleter(new TabComplete());
+
         String[] messages = {
-                getPrefix+"&8==================================================",
-                getPrefix+"&7Developers&8: &b"+getDescription().getAuthors() ,
-                getPrefix+"&7Plugin Version&8: &b"+getDescription().getVersion(),
-                getPrefix+"&7Server Version&8: &b"+getServer().getVersion(),
-                getPrefix+"&7Bukkit Version&8: &b"+Bukkit.getBukkitVersion(),
-                getPrefix+"&8==================================================",
-                getPrefix+"&7summary class...",
-                getPrefix+"&7loading command...",
-                getPrefix+"&7registering config...",
-                getPrefix+"&aloaded success."
+                Prefix.getFixedPrefix+"&8==================================================",
+                Prefix.getFixedPrefix+"&7Developers&8: &b"+getDescription().getAuthors() ,
+                Prefix.getFixedPrefix+"&7Plugin Version&8: &b"+getDescription().getVersion(),
+                Prefix.getFixedPrefix+"&7Server Version&8: &b"+getServer().getVersion(),
+                Prefix.getFixedPrefix+"&7Bukkit Version&8: &b"+Bukkit.getBukkitVersion(),
+                Prefix.getFixedPrefix+"&8==================================================",
+                Prefix.getFixedPrefix+"&7summary class...",
+                Prefix.getFixedPrefix+"&7loading command...",
+                Prefix.getFixedPrefix+"&7registering config...",
+                Prefix.getFixedPrefix+"&aloaded success."
         };
 
         for (String s : messages){
