@@ -10,8 +10,9 @@ public class EntityDamageByEntity implements Listener, Config {
 
     @EventHandler
     public static void onDamage(EntityDamageByEntityEvent event){
-        if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
-            Player player = (Player) event.getEntity();
+        // if (event.getDamager() instanceof Player && event.getEntity() instanceof Player)
+        if (event.getDamager() instanceof Player) {
+            Player player = (Player) event.getDamager();
             player.setVelocity(player.getLocation().getDirection().multiply(getLaunching));
         }
     }
