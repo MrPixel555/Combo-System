@@ -1,23 +1,30 @@
 #======Config-File=================='===================================#
-#Developers: [Amir_Mahdi_Rezaee, Detiven, mohamadtofigh]                #
-#Discord-support: [https://discord.gg/DUdq4JFr3H]                       #
-#Github-issue: [https://github.com/mohamadtofigh3/Combo-System/issues]  #
-#Description: [                                                         #
-#This plugin is the settings for combo player                           #
-#This plugin is made for Minecraft and by installing this plugin        #
-#You have a better combo system in your server if you are               #
-#Minecraft doesn't exist, but this plugin has these benefits            #
-#He provides it. Sincerely ]                                            #
+# Developers: [Amir_Mahdi_Rezaee, Detiven, mohamadtofigh]               #
+# Discord-support: [https://discord.gg/DUdq4JFr3H]                      #
+# Github-issue: [https://github.com/mohamadtofigh3/Combo-System/issues] #
+# Description: [                                                        #
+# This plugin is the settings for combo player                          #
+# This plugin is made for Minecraft and by installing this plugin       #
+# You have a better combo system in your server if you are              #
+# Minecraft doesn't exist, but this plugin has these benefits           #
+# He provides it. Sincerely ]                                           #
 #==================================='===================================#
 
 #Config version of this plugin
 Version: 1.0.0B
 Exe: false
 
+#Please enter the required information in this section.
+Account:
+  #You should leave your own plugin here. If you don't have to buy , otherwise the plugin will not activate.
+  Token: "paste_your_token"
+  #Please enter the user you were given when you purchased this plugin.
+  User: "paste_your_username"
+  #Please enter the password you were given when you purchased this plugin.
+  Pass: "paste_your_password"
+
 #Here is the root plugin. The main menu order is the plugin setting
 Root:
-  #You should leave your own plugin here. If you don't have to buy D, otherwise the plugin will not activate.
-  Token: "developer_mode"
   #You have to make the list here. I suggest you not touch.
   Permissions:
     #If someone has reload permission, they can use the '/combo reload' command!
@@ -35,6 +42,6 @@ Combo:
 #Here are all the messages you send while using the plugin you can set up your own
 Messages:
   #This is Prefix Plugin. For use {prefix}
-  Prefix: "&f&Combo&b&lSystem &7»&r "
+  Prefix: "&f&lCombo&b&lSystem &7»&r "
   #This is the plugin reload message.
   Reload: "{prefix}&7plugin reloaded success"

@@ -6,7 +6,9 @@ import org.bukkit.configuration.Configuration;
 public interface Config {
     Configuration config = Access.getMain.getConfig();
     String getConfigVersion = config.getString("Version");
-    String getUserToken = config.getString("Root.Token");
+    String getToken = config.getString("Account.Token");
+    String getUser = config.getString("Account.User");
+    String getPass = config.getString("Account.Pass");
     boolean getExe = config.getBoolean("Exe");
     boolean getRegisterHit = config.getBoolean("Combo.Register-Hit");
     int getLaunching = config.getInt("Combo.Launching");
