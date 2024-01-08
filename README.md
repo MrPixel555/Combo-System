@@ -1,3 +1,3 @@
-# [Click For Download](https://uupload.ir/view/combo-system-1.0.0b_hwft.jar/)
+# [Click For Download](https://www.mediafire.com/file/bqy9nv0ynohj7de/Combo-System-1.0.0B.jar/file)
 
 # Other Topic Coming Soon...
