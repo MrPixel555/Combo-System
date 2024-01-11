@@ -1,3 +1,3 @@
-# [Click For Download](https://www.mediafire.com/file/bqy9nv0ynohj7de/Combo-System-1.0.0B.jar/file)
+# [Click For Download](https://www.spigotmc.org/resources/combo-system-%E2%AD%90-in-beta-version-1-0-1-advanced-combo.114402/download?version=526106)
 
 # Other Topic Coming Soon...

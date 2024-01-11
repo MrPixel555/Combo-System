@@ -6,12 +6,14 @@ import org.bukkit.configuration.Configuration;
 public interface Config {
     Configuration config = Access.getMain.getConfig();
     String getConfigVersion = config.getString("Version");
+    String getPluginVersion = Access.getMain.getDescription().getVersion();
+    boolean getUpdate = config.getBoolean("Account.Update");
     String getToken = config.getString("Account.Token");
     String getUser = config.getString("Account.User");
     String getPass = config.getString("Account.Pass");
     boolean getExe = config.getBoolean("Exe");
     boolean getRegisterHit = config.getBoolean("Combo.Register-Hit");
-    int getLaunching = config.getInt("Combo.Launching");
+    double getLaunching = config.getDouble("Combo.Launching");
     String getPermReload = config.getString("Root.Permissions.Reload");
     String getPermDebug = config.getString("Root.Permissions.Debug");
     String getPrefix = config.getString("Messages.Prefix");

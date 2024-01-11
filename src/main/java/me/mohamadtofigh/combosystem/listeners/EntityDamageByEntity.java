@@ -1,24 +1,37 @@
 package me.mohamadtofigh.combosystem.listeners;
 
 import me.mohamadtofigh.combosystem.utils.config.Config;
+import me.mohamadtofigh.combosystem.utils.server.ServerLib;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.util.Vector;
 
 public class EntityDamageByEntity implements Listener, Config {
     @EventHandler
     public static void onDamage(EntityDamageByEntityEvent event){
 
-        if (event.getDamager() instanceof Player) {
-            Entity damager = event.getDamager();
-            Entity entity = event.getEntity();
-            entity.setVelocity(entity.getLocation().getDirection().multiply(getLaunching));
-            if (getRegisterHit){
-                event.setCancelled(true);
-            }
+        Entity damager = event.getDamager();
+        Entity defender = event.getEntity();
+
+        Vector knockback = defender.getVelocity().multiply(getLaunching);
+        if (damager instanceof Player) {
+            defender.setVelocity(knockback);
+            ServerLib.sendMessage("set knockback to:"+knockback+" and sended to defender");
         }
-        // if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {}
+        if (getRegisterHit){
+            if (defender instanceof LivingEntity) {
+                double damaged = 1.5;
+                LivingEntity livingEntity = (LivingEntity) defender;
+
+                livingEntity.damage(damaged);
+                ServerLib.sendMessage("set register all hit to:"+livingEntity+" and sended to defender in hp:"+damaged);
+
+            }
+            event.setCancelled(true);
+        }
     }
 }

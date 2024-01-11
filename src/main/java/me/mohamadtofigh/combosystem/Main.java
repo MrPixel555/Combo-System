@@ -11,11 +11,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
-import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
 
 public final class Main extends JavaPlugin implements Config {
     private static Main plugins;
@@ -34,77 +35,48 @@ public final class Main extends JavaPlugin implements Config {
         booting("&7booting plugins...");
 
         if (Connection.isInternetAvailable()){
-
-            try {
-                URL url = new URL("http://127.0.0.1:5500/index.html");
-                URLConnection conn = url.openConnection();
-                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-                String inputLine;
-                StringBuilder content = new StringBuilder();
-                while ((inputLine = in.readLine()) != null) {
-                    content.append(inputLine);
-                }
-                in.close();
-
-                getVerify(content, "<p class=\""+getUser+"\" id=\""+getPass+"\"", "</p>");
-            } catch (IOException e) {
-
-                onError("read from services: " + e.getMessage());
-            }
+            booting("&abooted success");
+            onLoaded();
+            //isNewUpdate();
 
         } else {
 
             onError("internet wi-fi connection");
         }
     }
-    private void getVerify(StringBuilder content, String one, String two){
-        String htmlContent = content.toString();
-        int pStart = htmlContent.indexOf(one) + one.length()+1;
-        int pEnd = htmlContent.indexOf(two);
-
-        if (pStart != -1 && pEnd != -1) {
-            String pText = htmlContent.substring(pStart, pEnd).trim();
-
-            booting("&7booted plugin is loading token...");
-            if (getToken.equals(pText)){
-
-                booting("&aloaded token success.");
-                onLoaded();
-                isNewUpdate(content, pEnd);
-            } else {
-
-                onError("token on config file");
+    private void isNewUpdate(){
+        try {
+            URL url = new URL("https://www.spigotmc.org/resources/combo-system-%E2%AD%90-in-beta-version-1-0-0-advanced-combo.114402/");
+            Scanner scanner = new Scanner(url.openStream());
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.contains("Version: ")) {
+                    String onlineVersion = line.split("Version: ")[1];
+                    if (!onlineVersion.equals(getPluginVersion)) {
+                        ServerLib.sendMessage(Prefix.getFixedPrefix+"&7new version is available&8: &b" + onlineVersion);
+                        updatePlugin();
+                    }
+                    break;
+                }
             }
+            scanner.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-    private void isNewUpdate(StringBuilder content, int pEnd){
-        String htmlContent = content.toString();
-        int pStart = htmlContent.indexOf("<p class=\"version\"") + 19;
-        pEnd = htmlContent.indexOf("</p>", pStart);
-
-        if (pStart != -1 && pEnd != -1) {
-            String pText = htmlContent.substring(pStart, pEnd).trim();
-            ServerLib.sendMessage(Prefix.getFixedPrefix+"&7checking for update...");
-
-            if (!pText.equals(getDescription().getVersion())){
-                ServerLib.sendMessage(Prefix.getFixedPrefix+"&7new update is available&8: &b"+ pText);
-                isNewDesc(content, pEnd);
-            }
-        }
-    }
-    private void isNewDesc(StringBuilder content, int pEnd){
-        String htmlContent = content.toString();
-        int pStart = htmlContent.indexOf("<p class=\"desc\"") + 16;
-        pEnd = htmlContent.indexOf("</p>", pStart);
-
-        if (pStart != -1 && pEnd != -1) {
-            String pText = htmlContent.substring(pStart, pEnd).trim();
-            pText = pText.replace("\\n", "\n");
-            String[] lines = pText.split("\n");
-            for (String line : lines) {
-                ServerLib.sendMessage(Prefix.getFixedPrefix+line);
-            }
+    private void updatePlugin() {
+        if (!getUpdate) return;
+        ServerLib.sendMessage(Prefix.getFixedPrefix+"&7downloading new version...");
+        try {
+            URL url = new URL("https://www.spigotmc.org/resources/combo-system-%E2%AD%90-in-beta-version-1-0-0-advanced-combo.114402/download?version=123456");
+            File pluginsDir = this.getDataFolder().getParentFile();
+            Path targetPath = new File(pluginsDir, getDescription().getName()+"-"+getPluginVersion+".jar").toPath();
+            InputStream in = url.openStream();
+            Files.copy(in, targetPath, StandardCopyOption.REPLACE_EXISTING);
+            ServerLib.sendMessage(Prefix.getFixedPrefix+"&adownloaded and installed please restart your server");
+        } catch (IOException e) {
+            e.printStackTrace();
+            ServerLib.sendMessage(Prefix.getErrorPrefix+"failed data loading");
         }
     }
     private void onError(String error){

@@ -11,20 +11,13 @@
 #==================================='===================================#
 
 #Config version of this plugin
-Version: 1.0.0B
+Version: 1.0.1B
 Exe: false
-
-#Please enter the required information in this section.
-Account:
-  #You should leave your own plugin here. If you don't have to buy , otherwise the plugin will not activate.
-  Token: "paste_your_token"
-  #Please enter the user you were given when you purchased this plugin.
-  User: "paste_your_username"
-  #Please enter the password you were given when you purchased this plugin.
-  Pass: "paste_your_password"
 
 #Here is the root plugin. The main menu order is the plugin setting
 Root:
+  #If true, auto update and install new update.
+  Update: true
   #You have to make the list here. I suggest you not touch.
   Permissions:
     #If someone has reload permission, they can use the '/combo reload' command!
@@ -35,7 +28,7 @@ Root:
 #Here's the main settings, for combo setting and launching.
 Combo:
   #How much kb the player eats every time the hit player eats. Suggest not change, anticheat not change!
-  Launching: -2
+  Launching: -0.7
   #If it is true, any hit given by the player will be registered!
   Register-Hit: false
 
