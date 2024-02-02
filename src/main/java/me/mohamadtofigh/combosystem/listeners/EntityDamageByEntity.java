@@ -20,7 +20,7 @@ public class EntityDamageByEntity implements Listener, Config {
         Vector knockback = defender.getVelocity().multiply(getLaunching);
         if (damager instanceof Player) {
             defender.setVelocity(knockback);
-            ServerLib.sendMessage("set knockback to:"+knockback+" and sended to defender");
+            ServerLib.sendDebug("Set shod KB ro:"+knockback+" va ersal shod be defender");
         }
         if (getRegisterHit){
             if (defender instanceof LivingEntity) {
@@ -28,7 +28,7 @@ public class EntityDamageByEntity implements Listener, Config {
                 LivingEntity livingEntity = (LivingEntity) defender;
 
                 livingEntity.damage(damaged);
-                ServerLib.sendMessage("set register all hit to:"+livingEntity+" and sended to defender in hp:"+damaged);
+                ServerLib.sendDebug("tamam hit ha sabt shodan az:"+livingEntity+" be defender va inm hp kam shode:"+damaged);
 
             }
             event.setCancelled(true);
