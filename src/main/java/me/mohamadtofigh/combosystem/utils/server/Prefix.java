@@ -1,6 +1,5 @@
 package me.mohamadtofigh.combosystem.utils.server;
 
-import me.mohamadtofigh.combosystem.Access;
 import me.mohamadtofigh.combosystem.utils.config.Config;
 
 public interface Prefix{

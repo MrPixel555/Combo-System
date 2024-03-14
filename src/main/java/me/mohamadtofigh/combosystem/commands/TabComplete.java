@@ -15,6 +15,7 @@ public class TabComplete implements TabCompleter, Config {
         if (args.length >= 1) {
             if (command.getName().equalsIgnoreCase("combo")) {
                 tabCMD.clear();
+                assert Config.getPermReload != null || Config.getPermDebug != null;
                 if (sender.hasPermission(Config.getPermReload)) tabCMD.add("reload");
                 if (sender.hasPermission(Config.getPermDebug)) tabCMD.add("debug");
                 tabCMD.add("help");

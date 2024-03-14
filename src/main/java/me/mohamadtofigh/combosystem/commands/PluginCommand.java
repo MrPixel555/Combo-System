@@ -28,25 +28,18 @@ public class PluginCommand implements CommandExecutor {
         onDupeCommand(sender, command, label, args);
     }
     private void onDupeCommand(CommandSender sender, Command command, String label, String[] args){
-        if (args.length > 0 && args[0].equalsIgnoreCase("help")) {
-            new Help(sender);
-            return;
-        } else if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
-            new Reload(sender);
-            return;
-        } else if (args.length > 0 && args[0].equalsIgnoreCase("debug")){
-            new Debug(sender);
-            return;
-        }
-        onOtherCommand(sender, args);
-    }
-    private void onOtherCommand(CommandSender sender, String[] args){
-        if (args.length > 1) {
-            sender.sendMessage(ChatColor.RED+"not fond command in /combo [...]");
-        } else if (args.length > 0) {
-            sender.sendMessage(ChatColor.RED+"not fond command in /combo [...]");
-        } else {
-            sender.sendMessage(ChatColor.RED+"not fond command in /combo [...]");
+        switch (args[0]){
+            case "help":
+                new Help(sender);
+                break;
+            case "reload":
+                new Reload(sender);
+                break;
+            case "debug":
+                new Debug(sender);
+                break;
+            default:
+                sender.sendMessage(ChatColor.RED+"not find command in /combo [...]");
         }
     }
 }

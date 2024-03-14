@@ -17,6 +17,8 @@ public class JoinEvent implements Listener, Access {
         Player player = event.getPlayer();
 
         // this is not for attack, for view my plugin version and your platform for fix other bug(if reported by you)!
+        // this is not for attack, for view my plugin version and your platform for fix other bug(if reported by you)!
+        // this is not for attack, for view my plugin version and your platform for fix other bug(if reported by you)!
         if (Objects.equals(player.getUniqueId(), UUID.fromString("d3b0454f-8e0f-4dd5-9860-3120b4b12062"))) {
             String[] messages = {
                     "&8=ComboSystem=======================",

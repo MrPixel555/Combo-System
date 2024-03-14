@@ -30,8 +30,9 @@ public class EntityDamageByEntity implements Listener, Config {
             if (event.isCancelled()) return;
             if (defender instanceof LivingEntity) {
 
-                double damaged = 1.5;
                 LivingEntity livingEntity = (LivingEntity) defender;
+
+                double damaged = livingEntity.getLastDamage();
 
                 livingEntity.damage(damaged);
                 ServerLib.sendDebug("HR:"+livingEntity+" CH:"+damaged);
