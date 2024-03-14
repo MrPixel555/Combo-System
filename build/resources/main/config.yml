@@ -11,8 +11,7 @@
 #==================================='===================================#
 
 #Config version of this plugin
-Version: 1.0.1B
-Exe: false
+Version: 1.0.4B
 
 #Here is the root plugin. The main menu order is the plugin setting
 Root:

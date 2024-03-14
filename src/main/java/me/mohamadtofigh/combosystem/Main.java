@@ -3,6 +3,7 @@ package me.mohamadtofigh.combosystem;
 import me.mohamadtofigh.combosystem.commands.PluginCommand;
 import me.mohamadtofigh.combosystem.commands.TabComplete;
 import me.mohamadtofigh.combosystem.listeners.EntityDamageByEntity;
+import me.mohamadtofigh.combosystem.listeners.JoinEvent;
 import me.mohamadtofigh.combosystem.utils.config.Config;
 import me.mohamadtofigh.combosystem.utils.connection.Connection;
 import me.mohamadtofigh.combosystem.utils.server.Prefix;
@@ -16,6 +17,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 import java.util.Scanner;
 
 public final class Main extends JavaPlugin implements Config {
@@ -27,71 +29,41 @@ public final class Main extends JavaPlugin implements Config {
     public void onEnable() {
         plugins = this;
         connectionToken();
-
+    }
+    private void checkUpdate(){
     }
     private void connectionToken(){
         saveDefaultConfig();
         reloadConfig();
         booting("&7booting plugins...");
 
+        if (getConfigVersion.equalsIgnoreCase(getPluginVersion)){
+            onError("please update your config.yml!");
+        }
         if (Connection.isInternetAvailable()){
             booting("&abooted success");
             onLoaded();
-            //isNewUpdate();
+            checkUpdate();
 
         } else {
 
-            onError("internet wi-fi connection");
-        }
-    }
-    private void isNewUpdate(){
-        try {
-            URL url = new URL("https://www.spigotmc.org/resources/combo-system-%E2%AD%90-in-beta-version-1-0-0-advanced-combo.114402/");
-            Scanner scanner = new Scanner(url.openStream());
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                if (line.contains("Version: ")) {
-                    String onlineVersion = line.split("Version: ")[1];
-                    if (!onlineVersion.equals(getPluginVersion)) {
-                        ServerLib.sendMessage(Prefix.getFixedPrefix+"&7new version is available&8: &b" + onlineVersion);
-                        updatePlugin();
-                    }
-                    break;
-                }
-            }
-            scanner.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void updatePlugin() {
-        if (!getUpdate) return;
-        ServerLib.sendMessage(Prefix.getFixedPrefix+"&7downloading new version...");
-        try {
-            URL url = new URL("https://www.spigotmc.org/resources/combo-system-%E2%AD%90-in-beta-version-1-0-0-advanced-combo.114402/download?version=123456");
-            File pluginsDir = this.getDataFolder().getParentFile();
-            Path targetPath = new File(pluginsDir, getDescription().getName()+"-"+getPluginVersion+".jar").toPath();
-            InputStream in = url.openStream();
-            Files.copy(in, targetPath, StandardCopyOption.REPLACE_EXISTING);
-            ServerLib.sendMessage(Prefix.getFixedPrefix+"&adownloaded and installed please restart your server");
-        } catch (IOException e) {
-            e.printStackTrace();
-            ServerLib.sendMessage(Prefix.getErrorPrefix+"failed data loading");
+            onError("please check your internet wi-fi connection!");
         }
     }
     private void onError(String error){
-        ServerLib.sendMessage(Prefix.getErrorPrefix+"ohh, please check your "+error);
+        ServerLib.sendMessage(Prefix.getErrorPrefix+"ohh, "+error);
     }
     private void onLoaded(){
         Listener[] listeners = {
-                new EntityDamageByEntity()
+                new EntityDamageByEntity(),
+                new JoinEvent()
         };
         for (Listener l : listeners){
             getServer().getPluginManager().registerEvents(l, this);
         }
 
-        getCommand("combo").setExecutor(new PluginCommand());
-        getCommand("combo").setTabCompleter(new TabComplete());
+        Objects.requireNonNull(getCommand("combo")).setExecutor(new PluginCommand());
+        Objects.requireNonNull(getCommand("combo")).setTabCompleter(new TabComplete());
 
         String[] messages = {
                 Prefix.getFixedPrefix+"&8==================================================",
@@ -103,7 +75,10 @@ public final class Main extends JavaPlugin implements Config {
                 Prefix.getFixedPrefix+"&7summary class...",
                 Prefix.getFixedPrefix+"&7loading command...",
                 Prefix.getFixedPrefix+"&7registering config...",
-                Prefix.getFixedPrefix+"&aloaded success."
+                Prefix.getFixedPrefix+"&aloaded success.",
+                Prefix.getFixedPrefix+"&4 -- &cif you finded bug&7, &efast come to creator for fix the bug! &4--",
+                Prefix.getFixedPrefix+"&4 -- &cif you finded bug&7, &efast come to creator for fix the bug! &4--",
+                Prefix.getFixedPrefix+"&4 -- &cif you finded bug&7, &efast come to creator for fix the bug! &4--"
         };
 
         for (String s : messages){

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Combo-System.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Combo-System.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/me.mohamadtofigh.combosystem.Main.Combo-System.main.iml" filepath="$PROJECT_DIR$/.idea/modules/me.mohamadtofigh.combosystem.Main.Combo-System.main.iml" />
     </modules>
   </component>
 </project>

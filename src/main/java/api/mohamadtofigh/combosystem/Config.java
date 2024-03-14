@@ -7,11 +7,6 @@ public class Config {
     private static final Configuration config = Access.getMain.getConfig();
     public String getConfigVersion = config.getString("Version");
     public String getPluginVersion = Access.getMain.getDescription().getVersion();
-    public boolean getUpdate = config.getBoolean("Account.Update");
-    public String getToken = config.getString("Account.Token");
-    public String getUser = config.getString("Account.User");
-    public String getPass = config.getString("Account.Pass");
-    public boolean getExe = config.getBoolean("Exe");
     public boolean getRegisterHit = config.getBoolean("Combo.Register-Hit");
     public double getLaunching = config.getDouble("Combo.Launching");
     public String getPermReload = config.getString("Root.Permissions.Reload");

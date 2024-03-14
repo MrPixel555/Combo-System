@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-group = 'me'
-version = '1.0.3R'
+group = 'me.mohamadtofigh.combosystem.Main'
+version = '1.0.4B'
 
 repositories {
     mavenCentral()
